@@ -441,6 +441,50 @@ function build404(site) {
 }
 
 /* -------------------------------------------------------------------------- */
+/* nginx 域名映射表                                                            */
+/* -------------------------------------------------------------------------- */
+
+/**
+ * 生成 nginx 的 map 片段：访问 vps.bike 直接打开它自己的展示页。
+ * 浏览器对 IDN 域名发送的 Host 是 Punycode，所以这里用 ascii 做 key。
+ * site.primaryDomain 指定的那个域名不写进去，留给它显示总览页。
+ */
+function buildNginxMap(site, domains) {
+  const primary = (site.primaryDomain || "").toLowerCase();
+  const primaryAscii = primary ? domainToASCII(primary) || primary : "";
+
+  const rows = [];
+  for (const d of domains) {
+    const host = (d.ascii || d.name).toLowerCase();
+    if (host === primaryAscii) continue;
+    // Punycode 的 host 看不出是哪个域名，给它标一行注释
+    const note = host === d.name.toLowerCase() ? "" : d.name;
+    rows.push([host, `/d/${d.slug}/`, note]);
+    rows.push([`www.${host}`, `/d/${d.slug}/`, ""]);
+  }
+
+  const kw = Math.max(0, ...rows.map((r) => r[0].length));
+  const vw = Math.max(0, ...rows.map((r) => r[1].length + 1));
+  const lines = rows.map(([host, path, note]) => {
+    const entry = `    ${host.padEnd(kw)}  ${path};`;
+    return note ? `${entry.padEnd(kw + vw + 6)}  # ${note}` : entry;
+  });
+
+  return `# 由 scripts/build.mjs 生成，请勿手改 —— 改 data/domains.json 后重新构建。
+#
+# 放到 /etc/nginx/conf.d/yuming-map.conf（map 必须在 http 块里，
+# Debian 的 /etc/nginx/nginx.conf 默认 include 了 conf.d/*.conf）。
+#
+# 主域名（显示总览页）：${primary || "未设置，见 data/domains.json 的 site.primaryDomain"}
+
+map $host $domain_page {
+    default  "";
+${lines.join("\n")}
+}
+`;
+}
+
+/* -------------------------------------------------------------------------- */
 /* 主流程                                                                      */
 /* -------------------------------------------------------------------------- */
 
@@ -512,6 +556,7 @@ function main() {
       ) + "\n"
     )
   );
+  written.push(write(join("deploy", "domains.map"), buildNginxMap(site, domains)));
   write(".nojekyll", "");
 
   console.log(`✓ 生成 ${written.length} 个文件，共 ${domains.length} 个域名`);

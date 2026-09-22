@@ -92,11 +92,13 @@ npm run dev        # 构建 + 起本地服务器，默认 http://localhost:4173
 
 ## 部署
 
-生成的文件直接就在仓库根目录，推上去即可：
+生成的文件直接就在仓库根目录，没有任何运行时依赖，放到能被 HTTP 访问的地方就行。
 
-- **GitHub Pages**：Settings → Pages → Deploy from a branch，选本分支 `/ (root)`。已经带了 `.nojekyll`
-- **Cloudflare Pages**：构建命令 `npm run build`，输出目录留空（根目录）
-- **任意静态托管 / 自己的 VPS**：把整个仓库丢进去就行，没有任何运行时依赖
+完整步骤见 **[DEPLOY.md](DEPLOY.md)**，覆盖三种方式：
+
+- **自己的 VPS**（Debian 12 + nginx + certbot）——仓库里带了现成的 `deploy/nginx.conf` 和一键更新脚本 `deploy/update.sh`；还可以让 16 个域名各自打开自己的展示页
+- **Cloudflare Pages**——构建命令留空，输出目录填 `/`
+- **GitHub Pages**——Settings → Pages 选分支和 `/ (root)`，已带 `.nojekyll`
 
 ## 目录结构
 
@@ -107,9 +109,13 @@ scripts/serve.mjs     ← 本地预览服务器
 assets/styles.css     ← 样式
 assets/site.js        ← 主题、复制、键盘翻页
 assets/index.js       ← 总览页的搜索 / 筛选 / 排序 / 视图切换
+deploy/nginx.conf     ← nginx 配置模板
+deploy/update.sh      ← 服务器上的一键更新脚本
+DEPLOY.md             ← 部署说明
 
 index.html            ← 以下都是生成产物，不用手改
 d/<域名>/index.html
 404.html
 api/domains.json      ← 规范化后的数据，别处想直接取用可以读它
+deploy/domains.map    ← nginx 域名映射表，跟着 domains.json 自动同步
 ```

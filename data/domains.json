@@ -5,6 +5,7 @@
     "subtitle": "一个人的域名收藏夹 · 总览与独立展示页",
     "owner": "",
     "url": "",
+    "primaryDomain": "530.one",
     "footer": "数据来自 data/domains.json，改完跑 npm run build 即可重新生成全部页面。"
   },
   "domains": [
