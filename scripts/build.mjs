@@ -65,6 +65,53 @@ function spreadHues(hues, minGap = 16) {
   return out;
 }
 
+/** 普通的字符串哈希，用来派生各种「每个域名都不一样」的视觉参数 */
+function hashOf(str) {
+  let h = 2166136261;
+  for (const ch of str) {
+    h ^= ch.codePointAt(0);
+    h = Math.imul(h, 16777619);
+  }
+  return h >>> 0;
+}
+
+/** 水印文字的宽度（单位 em）。等宽字体下 CJK 算一个全角，ASCII 算 0.6 */
+function emWidth(text) {
+  let em = 0;
+  for (const ch of text) {
+    const cp = ch.codePointAt(0);
+    const wide =
+      (cp >= 0x1100 && cp <= 0x115f) ||
+      (cp >= 0x2e80 && cp <= 0xa4cf) ||
+      (cp >= 0xac00 && cp <= 0xd7a3) ||
+      (cp >= 0xf900 && cp <= 0xfaff) ||
+      (cp >= 0xfe30 && cp <= 0xfe6f) ||
+      (cp >= 0xff00 && cp <= 0xff60) ||
+      (cp >= 0xffe0 && cp <= 0xffe6);
+    em += wide ? 1 : 0.6;
+  }
+  return Math.max(Math.round(em * 100) / 100, 0.6);
+}
+
+/**
+ * 每个域名的视觉签名：主色相之外再给一个副色相、一种底纹、一个渐变角度，
+ * 加上主体文字做的大水印。这样 16 个页面不只是换个颜色，而是各有各的样子。
+ */
+const MOTIF_COUNT = 8;
+
+function signatureOf(d) {
+  const h = hashOf(d.name);
+  return {
+    hue2Offset: 28 + (h % 62), // 副色相和主色相的间距
+    // 底纹按顺序轮流分配，保证 8 种全都用上、相邻两张卡片也永远不一样；
+    // 用哈希取模的话 16 个域名会挤在少数几种上。
+    motif: d.i % MOTIF_COUNT,
+    // 注意用无符号右移：h 可能大于 2^31，有符号右移会变成负数。
+    wash: 110 + ((h >>> 3) % 90),
+    wmEm: emWidth(d.label),
+  };
+}
+
 /** 目录名用的 slug：ASCII 域名直接用自身，IDN 回落到 punycode */
 function slugOf(d) {
   if (d.slug) return d.slug;
@@ -99,9 +146,9 @@ const ICON = {
 /** 主题记忆脚本，放在 head 里避免刷新时闪白 */
 const THEME_BOOT = `<script>(function(){try{var t=localStorage.getItem('dm-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>`;
 
-function layout({ title, description, base, hue, body, bodyAttrs = "", scripts = [] }) {
+function layout({ title, description, base, hue, rootVars, body, bodyAttrs = "", scripts = [] }) {
   return `<!doctype html>
-<html lang="zh-CN"${hue != null ? ` style="--accent-h:${hue}"` : ""}>
+<html lang="zh-CN"${rootVars ? ` style="${rootVars}"` : hue != null ? ` style="--accent-h:${hue}"` : ""}>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -159,14 +206,21 @@ function footer(site, base) {
 /* 总览页                                                                      */
 /* -------------------------------------------------------------------------- */
 
+/** 把一个域名的视觉签名写成内联 CSS 变量 */
+function styleVars(d) {
+  return `--accent-h:${d.hue};--accent-h2:${d.hue2};--wash:${d.wash}deg;--wm-em:${d.wmEm}`;
+}
+
 function card(d) {
   const search = [d.name, d.ascii, d.label, d.tld, d.category, d.tagline, ...(d.tags || [])]
     .join(" ")
     .toLowerCase();
 
-  return `  <a class="card tint reveal" href="d/${esc(d.slug)}/" style="--accent-h:${d.hue};animation-delay:${Math.min(d.i * 35, 520)}ms"
+  return `  <a class="card tint reveal" href="d/${esc(d.slug)}/" style="${styleVars(d)};animation-delay:${Math.min(d.i * 35, 520)}ms"
      data-name="${esc(d.name)}" data-order="${d.i}" data-tld="${esc(d.tld)}"
      data-tags="${esc((d.tags || []).join("|"))}" data-search="${esc(search)}">
+    <span class="motif motif--${d.motif}" aria-hidden="true"></span>
+    <span class="card__wm" aria-hidden="true">${esc(d.label)}</span>
     <div class="card__top">
       <span class="card__idx">${pad2(d.i + 1)}</span>
       <span class="card__tld">.${esc(d.tld)}</span>
@@ -278,20 +332,30 @@ function buildDomain(site, domains, d) {
   </nav>
 
   <article class="detail">
-    <div class="detail__idx reveal">DOMAIN ${pad2(d.i + 1)}</div>
-    <h1 class="detail__name reveal" style="animation-delay:60ms">${esc(d.name)}</h1>
-    ${
-      d.ascii && d.ascii !== d.name
-        ? `<div class="detail__ascii reveal" style="animation-delay:90ms">Punycode · ${esc(d.ascii)}</div>`
-        : ""
-    }
-    <p class="detail__tagline reveal" style="animation-delay:120ms">${esc(d.tagline || "")}</p>
+    <section class="stage reveal">
+      <span class="motif motif--${d.motif}" aria-hidden="true"></span>
+      <span class="stage__wm" aria-hidden="true">${esc(d.label)}</span>
+      <div class="stage__body">
+        <div class="detail__idx">DOMAIN ${pad2(d.i + 1)} / ${pad2(domains.length)}</div>
+        <h1 class="detail__name">${esc(d.name)}</h1>
+        ${
+          d.ascii && d.ascii !== d.name
+            ? `<div class="detail__ascii">Punycode · ${esc(d.ascii)}</div>`
+            : ""
+        }
+        <p class="detail__tagline">${esc(d.tagline || "")}</p>
+        <div class="stage__spec">
+          <span>.${esc(d.tld)}</span><span aria-hidden="true">·</span>
+          <span>${d.name.length} 字符</span><span aria-hidden="true">·</span>
+          <span>${esc(d.category || "域名")}</span>
+        </div>
+        <div class="tags">
+          ${(d.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("\n          ")}
+        </div>
+      </div>
+    </section>
 
-    <div class="tags reveal" style="animation-delay:150ms">
-      ${(d.tags || []).map((t) => `<span class="tag">${esc(t)}</span>`).join("\n      ")}
-    </div>
-
-    <div class="actions reveal" style="animation-delay:180ms">
+    <div class="actions reveal" style="animation-delay:120ms">
       <a class="btn btn--primary" href="${esc(url)}" target="_blank" rel="noopener noreferrer">${ICON.external}访问站点</a>
       <button class="btn" type="button" data-copy="${esc(d.name)}">${ICON.copy}复制域名</button>
       <a class="btn" href="https://who.is/whois/${esc(d.ascii || d.name)}" target="_blank" rel="noopener noreferrer">${ICON.info}WHOIS</a>
@@ -329,7 +393,7 @@ ${kvItem("状态", d.status === "active" ? "使用中" : d.status)}
         ${domains
           .map(
             (o) =>
-              `<a class="tint" href="${base}d/${esc(o.slug)}/"${o.slug === d.slug ? ' aria-current="page"' : ""} style="--accent-h:${o.hue}">${esc(o.name)}</a>`
+              `<a class="tint" href="${base}d/${esc(o.slug)}/"${o.slug === d.slug ? ' aria-current="page"' : ""} style="--accent-h:${o.hue};--accent-h2:${o.hue2}">${esc(o.name)}</a>`
           )
           .join("\n        ")}
       </nav>
@@ -348,6 +412,7 @@ ${footer(site, base)}`;
     description: `${d.name} — ${d.tagline || ""} ${d.note || ""}`.trim().slice(0, 150),
     base,
     hue: d.hue,
+    rootVars: styleVars(d),
     bodyAttrs: ` data-prev="${base}d/${esc(prev.slug)}/" data-next="${base}d/${esc(next.slug)}/"`,
     body,
     scripts: ["assets/site.js"],
@@ -399,17 +464,18 @@ function main() {
   const hues = spreadHues(list.map((d) => hueOf(d.name)));
 
   const domains = list.map((d, i) => {
-    const ascii = domainToASCII(d.name) || "";
-    return {
+    const base = {
       ...d,
       i,
       slug: slugOf(d),
-      ascii,
+      ascii: domainToASCII(d.name) || "",
       tld: tldOf(d.name),
       label: labelOf(d.name),
       hue: hues[i],
       tags: d.tags || [],
     };
+    const sig = signatureOf(base);
+    return { ...base, ...sig, hue2: (base.hue + sig.hue2Offset) % 360 };
   });
 
   // slug 撞车会导致页面互相覆盖，直接报错更安全

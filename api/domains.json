@@ -27,6 +27,11 @@
       "tld": "one",
       "label": "530",
       "hue": 72,
+      "hue2Offset": 71,
+      "motif": 0,
+      "wash": 199,
+      "wmEm": 1.8,
+      "hue2": 143,
       "path": "/d/530.one/"
     },
     {
@@ -47,6 +52,11 @@
       "tld": "xyz",
       "label": "559911",
       "hue": 286,
+      "hue2Offset": 76,
+      "motif": 1,
+      "wash": 116,
+      "wmEm": 3.6,
+      "hue2": 2,
       "path": "/d/559911.xyz/"
     },
     {
@@ -67,6 +77,11 @@
       "tld": "best",
       "label": "9999999",
       "hue": 270,
+      "hue2Offset": 62,
+      "motif": 2,
+      "wash": 188,
+      "wmEm": 4.2,
+      "hue2": 332,
       "path": "/d/9999999.best/"
     },
     {
@@ -87,6 +102,11 @@
       "tld": "tg",
       "label": "gpt",
       "hue": 88,
+      "hue2Offset": 37,
+      "motif": 3,
+      "wash": 120,
+      "wmEm": 1.8,
+      "hue2": 125,
       "path": "/d/gpt.tg/"
     },
     {
@@ -107,6 +127,11 @@
       "tld": "gr",
       "label": "iepl",
       "hue": 186,
+      "hue2Offset": 48,
+      "motif": 4,
+      "wash": 141,
+      "wmEm": 2.4,
+      "hue2": 234,
       "path": "/d/iepl.gr/"
     },
     {
@@ -127,6 +152,11 @@
       "tld": "de",
       "label": "imjj",
       "hue": 104,
+      "hue2Offset": 72,
+      "motif": 5,
+      "wash": 125,
+      "wmEm": 2.4,
+      "hue2": 176,
       "path": "/d/imjj.de/"
     },
     {
@@ -147,6 +177,11 @@
       "tld": "eu.org",
       "label": "imjj",
       "hue": 344,
+      "hue2Offset": 51,
+      "motif": 6,
+      "wash": 132,
+      "wmEm": 2.4,
+      "hue2": 35,
       "path": "/d/imjj.eu.org/"
     },
     {
@@ -167,6 +202,11 @@
       "tld": "gr",
       "label": "iplc",
       "hue": 56,
+      "hue2Offset": 46,
+      "motif": 7,
+      "wash": 149,
+      "wmEm": 2.4,
+      "hue2": 102,
       "path": "/d/iplc.gr/"
     },
     {
@@ -187,6 +227,11 @@
       "tld": "tn",
       "label": "j8",
       "hue": 170,
+      "hue2Offset": 85,
+      "motif": 0,
+      "wash": 120,
+      "wmEm": 1.2,
+      "hue2": 255,
       "path": "/d/j8.tn/"
     },
     {
@@ -206,6 +251,11 @@
       "tld": "eu.org",
       "label": "onemjj",
       "hue": 135,
+      "hue2Offset": 32,
+      "motif": 1,
+      "wash": 168,
+      "wmEm": 3.6,
+      "hue2": 167,
       "path": "/d/onemjj.eu.org/"
     },
     {
@@ -226,6 +276,11 @@
       "tld": "bike",
       "label": "vps",
       "hue": 321,
+      "hue2Offset": 31,
+      "motif": 2,
+      "wash": 127,
+      "wmEm": 1.8,
+      "hue2": 352,
       "path": "/d/vps.bike/"
     },
     {
@@ -246,6 +301,11 @@
       "tld": "eu.org",
       "label": "i·kun",
       "hue": 7,
+      "hue2Offset": 75,
+      "motif": 3,
+      "wash": 182,
+      "wmEm": 3,
+      "hue2": 82,
       "path": "/d/ikun.eu.org/"
     },
     {
@@ -266,6 +326,11 @@
       "tld": "eu.org",
       "label": "坤",
       "hue": 302,
+      "hue2Offset": 39,
+      "motif": 4,
+      "wash": 187,
+      "wmEm": 1,
+      "hue2": 341,
       "path": "/d/kun.eu.org/"
     },
     {
@@ -287,6 +352,11 @@
       "tld": "eu.org",
       "label": "⋯",
       "hue": 23,
+      "hue2Offset": 46,
+      "motif": 5,
+      "wash": 177,
+      "wmEm": 0.6,
+      "hue2": 69,
       "path": "/d/dots.eu.org/"
     },
     {
@@ -306,6 +376,11 @@
       "tld": "eu.org",
       "label": "yyyn",
       "hue": 232,
+      "hue2Offset": 74,
+      "motif": 6,
+      "wash": 157,
+      "wmEm": 2.4,
+      "hue2": 306,
       "path": "/d/yyyn.eu.org/"
     },
     {
@@ -326,6 +401,11 @@
       "tld": "ci",
       "label": "zq",
       "hue": 254,
+      "hue2Offset": 36,
+      "motif": 7,
+      "wash": 153,
+      "wmEm": 1.2,
+      "hue2": 290,
       "path": "/d/zq.ci/"
     }
   ]
