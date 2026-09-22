@@ -1,0 +1,332 @@
+{
+  "site": {
+    "title": "域名矩阵",
+    "titleEn": "DOMAIN INDEX",
+    "subtitle": "一个人的域名收藏夹 · 总览与独立展示页",
+    "owner": "",
+    "url": "",
+    "footer": "数据来自 data/domains.json，改完跑 npm run build 即可重新生成全部页面。"
+  },
+  "count": 16,
+  "domains": [
+    {
+      "index": 1,
+      "name": "530.one",
+      "category": "数字域",
+      "tags": [
+        "数字",
+        "短域名",
+        "新顶级域"
+      ],
+      "tagline": "三位数字配 .one，念得顺、打得快。",
+      "note": "3 个字符的纯数字主体，配合 .one 后缀整体只有 7 个字符，适合做短链、跳转或者个人主页入口。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "530.one",
+      "ascii": "530.one",
+      "tld": "one",
+      "label": "530",
+      "hue": 72,
+      "path": "/d/530.one/"
+    },
+    {
+      "index": 2,
+      "name": "559911.xyz",
+      "category": "数字域",
+      "tags": [
+        "数字",
+        "叠数",
+        "新顶级域"
+      ],
+      "tagline": "55-99-11 三组叠数，输入时手感很好。",
+      "note": "六位纯数字，两两成组，记忆负担低。.xyz 价格友好，适合做长期的测试环境或者自用服务入口。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "559911.xyz",
+      "ascii": "559911.xyz",
+      "tld": "xyz",
+      "label": "559911",
+      "hue": 286,
+      "path": "/d/559911.xyz/"
+    },
+    {
+      "index": 3,
+      "name": "9999999.best",
+      "category": "数字域",
+      "tags": [
+        "数字",
+        "叠数",
+        "新顶级域"
+      ],
+      "tagline": "七个 9 加 .best，气质相当张扬。",
+      "note": "连号 9 是中文语境里辨识度最高的数字组合之一，和 .best 拼在一起有种直白的仪式感，适合做展示页或者活动页。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "9999999.best",
+      "ascii": "9999999.best",
+      "tld": "best",
+      "label": "9999999",
+      "hue": 270,
+      "path": "/d/9999999.best/"
+    },
+    {
+      "index": 4,
+      "name": "gpt.tg",
+      "category": "国别域",
+      "tags": [
+        "三字母",
+        "AI",
+        "国别域"
+      ],
+      "tagline": "三个字母的 gpt，落在多哥的 .tg 上。",
+      "note": "主体是目前辨识度最高的三字母缩写之一，.tg 为多哥国别后缀，也常被当作 Telegram 的谐音后缀来用，做 AI 或者 Bot 相关的入口很合适。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "gpt.tg",
+      "ascii": "gpt.tg",
+      "tld": "tg",
+      "label": "gpt",
+      "hue": 88,
+      "path": "/d/gpt.tg/"
+    },
+    {
+      "index": 5,
+      "name": "iepl.gr",
+      "category": "国别域",
+      "tags": [
+        "四字母",
+        "网络",
+        "国别域"
+      ],
+      "tagline": "IEPL 国际以太网专线，网络人一眼就懂。",
+      "note": "IEPL 是国际以太网专线的通用缩写，圈内属于自带语义的四字母组合。.gr 为希腊国别后缀。与 iplc.gr 是成对的一组。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "iepl.gr",
+      "ascii": "iepl.gr",
+      "tld": "gr",
+      "label": "iepl",
+      "hue": 186,
+      "path": "/d/iepl.gr/"
+    },
+    {
+      "index": 6,
+      "name": "imjj.de",
+      "category": "国别域",
+      "tags": [
+        "四字母",
+        "MJJ",
+        "国别域"
+      ],
+      "tagline": "I'm JJ，落在德国 .de 上的自我介绍。",
+      "note": "imjj 可以读成 I'm MJJ，是圈子里的自称。.de 是德国国别后缀，解析稳定、认知度高。与 imjj.eu.org 同系列。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "imjj.de",
+      "ascii": "imjj.de",
+      "tld": "de",
+      "label": "imjj",
+      "hue": 104,
+      "path": "/d/imjj.de/"
+    },
+    {
+      "index": 7,
+      "name": "imjj.eu.org",
+      "category": "eu.org",
+      "tags": [
+        "四字母",
+        "MJJ",
+        "eu.org"
+      ],
+      "tagline": "同一个 imjj，换一条 eu.org 的路。",
+      "note": "eu.org 提供的免费二级域名，适合长期挂自用服务。和 imjj.de 用同一个主体，方便做主备或者分流。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "imjj.eu.org",
+      "ascii": "imjj.eu.org",
+      "tld": "eu.org",
+      "label": "imjj",
+      "hue": 344,
+      "path": "/d/imjj.eu.org/"
+    },
+    {
+      "index": 8,
+      "name": "iplc.gr",
+      "category": "国别域",
+      "tags": [
+        "四字母",
+        "网络",
+        "国别域"
+      ],
+      "tagline": "IPLC 国际专线，iepl.gr 的另一半。",
+      "note": "IPLC 指国际专线电路，与 IEPL 常被一起提起。两个域名同后缀同长度，天然成套。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "iplc.gr",
+      "ascii": "iplc.gr",
+      "tld": "gr",
+      "label": "iplc",
+      "hue": 56,
+      "path": "/d/iplc.gr/"
+    },
+    {
+      "index": 9,
+      "name": "j8.tn",
+      "category": "国别域",
+      "tags": [
+        "两字符",
+        "极短",
+        "国别域"
+      ],
+      "tagline": "加上后缀总共 5 个字符，短到极致。",
+      "note": "主体只有两位，.tn 为突尼斯国别后缀。整体长度和 zq.ci 同级，是这份清单里最短的一档。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "j8.tn",
+      "ascii": "j8.tn",
+      "tld": "tn",
+      "label": "j8",
+      "hue": 170,
+      "path": "/d/j8.tn/"
+    },
+    {
+      "index": 10,
+      "name": "onemjj.eu.org",
+      "category": "eu.org",
+      "tags": [
+        "MJJ",
+        "eu.org"
+      ],
+      "tagline": "one + mjj，imjj 系列的第三块拼图。",
+      "note": "和 imjj.de、imjj.eu.org 属于同一组命名，可以拿来区分不同机器或者不同用途的服务。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "onemjj.eu.org",
+      "ascii": "onemjj.eu.org",
+      "tld": "eu.org",
+      "label": "onemjj",
+      "hue": 135,
+      "path": "/d/onemjj.eu.org/"
+    },
+    {
+      "index": 11,
+      "name": "vps.bike",
+      "category": "新顶级域",
+      "tags": [
+        "关键词",
+        "VPS",
+        "新顶级域"
+      ],
+      "tagline": "vps 骑上 .bike，整句读下来有点好笑。",
+      "note": "主体是通用关键词 vps，后缀 .bike 反差感很强，属于那种看一眼就会记住的组合，很适合做主机测评或者导航页。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "vps.bike",
+      "ascii": "vps.bike",
+      "tld": "bike",
+      "label": "vps",
+      "hue": 321,
+      "path": "/d/vps.bike/"
+    },
+    {
+      "index": 12,
+      "name": "i·kun.eu.org",
+      "slug": "ikun.eu.org",
+      "category": "特殊字符",
+      "tags": [
+        "IDN",
+        "梗域名",
+        "eu.org"
+      ],
+      "tagline": "中间点分隔的 i·kun，梗味拉满。",
+      "note": "主体里用了间隔号，属于特殊字符域名，浏览器地址栏可能会显示为 Punycode。与 坤.eu.org 是一对。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "ascii": "xn--ikun-5ha.eu.org",
+      "tld": "eu.org",
+      "label": "i·kun",
+      "hue": 7,
+      "path": "/d/ikun.eu.org/"
+    },
+    {
+      "index": 13,
+      "name": "坤.eu.org",
+      "slug": "kun.eu.org",
+      "category": "特殊字符",
+      "tags": [
+        "IDN",
+        "中文",
+        "eu.org"
+      ],
+      "tagline": "单个汉字做主体的中文域名。",
+      "note": "一个汉字 + eu.org，是这份清单里最短的中文域名。部分老旧客户端不支持 IDN，建议同时保留一个纯 ASCII 的备用地址。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "ascii": "xn--tfs.eu.org",
+      "tld": "eu.org",
+      "label": "坤",
+      "hue": 302,
+      "path": "/d/kun.eu.org/"
+    },
+    {
+      "index": 14,
+      "name": "⋯.eu.org",
+      "slug": "dots.eu.org",
+      "category": "特殊字符",
+      "tags": [
+        "IDN",
+        "符号",
+        "eu.org"
+      ],
+      "tagline": "省略号做主体，几乎没法用嘴念出来。",
+      "note": "纯符号主体，观赏性大于实用性。截图里的字符较小，展示用的具体码位建议本人再核对一次，改 data/domains.json 里的 name 字段即可。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "review": "字符码位待本人确认",
+      "ascii": "xn--4gh.eu.org",
+      "tld": "eu.org",
+      "label": "⋯",
+      "hue": 23,
+      "path": "/d/dots.eu.org/"
+    },
+    {
+      "index": 15,
+      "name": "yyyn.eu.org",
+      "category": "eu.org",
+      "tags": [
+        "四字母",
+        "eu.org"
+      ],
+      "tagline": "四个字母，三个 y 起头。",
+      "note": "纯字母主体，拼写规整、没有歧义，适合拿来做长期稳定的服务解析。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "yyyn.eu.org",
+      "ascii": "yyyn.eu.org",
+      "tld": "eu.org",
+      "label": "yyyn",
+      "hue": 232,
+      "path": "/d/yyyn.eu.org/"
+    },
+    {
+      "index": 16,
+      "name": "zq.ci",
+      "category": "国别域",
+      "tags": [
+        "两字符",
+        "极短",
+        "国别域"
+      ],
+      "tagline": "两字母 + 两字母，总长 5 个字符。",
+      "note": "双拼缩写做主体，.ci 为科特迪瓦国别后缀。和 j8.tn 一样属于极短域名，做短链服务很合适。",
+      "status": "active",
+      "dns": "Cloudflare",
+      "slug": "zq.ci",
+      "ascii": "zq.ci",
+      "tld": "ci",
+      "label": "zq",
+      "hue": 254,
+      "path": "/d/zq.ci/"
+    }
+  ]
+}
