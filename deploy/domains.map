@@ -1,0 +1,40 @@
+# 由 scripts/build.mjs 生成，请勿手改 —— 改 data/domains.json 后重新构建。
+#
+# 放到 /etc/nginx/conf.d/yuming-map.conf（map 必须在 http 块里，
+# Debian 的 /etc/nginx/nginx.conf 默认 include 了 conf.d/*.conf）。
+#
+# 主域名（显示总览页）：530.one
+
+map $host $domain_page {
+    default  "";
+    559911.xyz               /d/559911.xyz/;
+    www.559911.xyz           /d/559911.xyz/;
+    9999999.best             /d/9999999.best/;
+    www.9999999.best         /d/9999999.best/;
+    gpt.tg                   /d/gpt.tg/;
+    www.gpt.tg               /d/gpt.tg/;
+    iepl.gr                  /d/iepl.gr/;
+    www.iepl.gr              /d/iepl.gr/;
+    imjj.de                  /d/imjj.de/;
+    www.imjj.de              /d/imjj.de/;
+    imjj.eu.org              /d/imjj.eu.org/;
+    www.imjj.eu.org          /d/imjj.eu.org/;
+    iplc.gr                  /d/iplc.gr/;
+    www.iplc.gr              /d/iplc.gr/;
+    j8.tn                    /d/j8.tn/;
+    www.j8.tn                /d/j8.tn/;
+    onemjj.eu.org            /d/onemjj.eu.org/;
+    www.onemjj.eu.org        /d/onemjj.eu.org/;
+    vps.bike                 /d/vps.bike/;
+    www.vps.bike             /d/vps.bike/;
+    xn--ikun-5ha.eu.org      /d/ikun.eu.org/;    # i·kun.eu.org
+    www.xn--ikun-5ha.eu.org  /d/ikun.eu.org/;
+    xn--tfs.eu.org           /d/kun.eu.org/;     # 坤.eu.org
+    www.xn--tfs.eu.org       /d/kun.eu.org/;
+    xn--4gh.eu.org           /d/dots.eu.org/;    # ⋯.eu.org
+    www.xn--4gh.eu.org       /d/dots.eu.org/;
+    yyyn.eu.org              /d/yyyn.eu.org/;
+    www.yyyn.eu.org          /d/yyyn.eu.org/;
+    zq.ci                    /d/zq.ci/;
+    www.zq.ci                /d/zq.ci/;
+}
